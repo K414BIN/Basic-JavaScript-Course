@@ -1,4 +1,4 @@
-function multIsHave( num ) {
+function isPrime( num ) {
     let result = " ";
     let counter =0;
     for ( let i=2; i<=5;i++) {
@@ -24,7 +24,7 @@ function multIsHave( num ) {
 var val=1;
 while (val<100) {
    
-    document.write (multIsHave(val));
+    document.write (isPrime(val));
     document.write (" ");
     val = val + 1;
 }
