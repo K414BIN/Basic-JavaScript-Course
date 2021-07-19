@@ -43,7 +43,7 @@ function unionArrays(arr,arr2){
 
 var  cart = [];
 priceAdd(busket,price);
-cart = unionArrays((usket,price);
+cart = unionArrays(busket,price);
 document.write(" <p> In cart now:  </p>");
 showIt(busket);
 document.write("<br />");
