@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<title> Chess </title>
+	<meta content="text/html; charset=UTF-8" ; lang="ru-RU" />
+	<h1> Сhessboard </h1>
+
+	<script type="text/javascript">
+		function draw() {
+			var canvas = document.getElementById('chessDesk');
+			if (canvas.getContext) {
+				var ctx = canvas.getContext('2d');
+			}
+
+			var squreVal1 = 256 * 2 + 22;
+			var squreVal2 = 256 * 2 + 10;
+			var squreVal3 = 256 * 2;
+			var cube1 = 32 * 2;
+			var base1 = 24;
+
+			ctx.strokeRect(15, 15, squreVal1, squreVal1);
+			ctx.strokeRect(21, 21, squreVal2, squreVal2);
+			ctx.strokeStyle = "black";
+			ctx.fillRect(base1, base1, squreVal3, squreVal3);
+			for (let i = 0; i < 8; i = i + 2)
+				for (let j = 0; j < 8; j = j + 2) {
+					ctx.clearRect(base1 + i * cube1, base1 + j * cube1, cube1, cube1);
+					ctx.clearRect(base1 + (i + 1) * cube1, base1 + (j + 1) * cube1, cube1, cube1);
+				}
+
+			var img = new Image();
+			img.src = '2.png';
+			img.onload = function () {
+
+				// I create pattern, but I can handle this 
+				var ptrn = ctx.createPattern(img, 'no-repeat');
+				ctx.fillStyle = ptrn;
+				ctx.fillRect(base1, base1, cube1, cube1);
+				/* =========================================== */
+				/* Variables changed */
+				var base2 = 75;
+				ctx.font = "48px Arial Narrow";
+				var i = 0;
+				var letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+				var numbers = ["8", "7", "6", "5", "4", "3", "2", "1"];
+				var firstrow = ["P", "P", "P", "P", "P", "P", "P", "P"];
+				var secondrow = ["R", "K", "B", "Q", "K", "B", "K", "R"];
+				base1 = 560;
+				do {
+
+					ctx.strokeText(numbers[i], base1, base2);
+					base2 = base2 + cube1;
+					i++;
+				} while (i <= numbers.length - 1);
+				/* Variables changed */
+				i = 0; base1 = cube1 / 2 + 12; base2 = 590;
+				/* Variables changed */
+				do {
+
+					ctx.strokeText(letters[i], base1, base2);
+					base1 = base1 + cube1;
+					i++;
+				} while (i <= letters.length - 1);
+				/* Variables changed */
+				i = 0; base2 = 75; base1 = cube1 / 2 + 12;
+				/* Variables changed */
+				do {
+					ctx.fillStyle = "white";
+					ctx.strokeStyle = "black";
+					if (i % 2 == 0) { ctx.strokeStyle = "white"; ctx.fillStyle = "black"; }
+					ctx.strokeText(firstrow[i], base1, base2 + cube1);
+					ctx.strokeText(secondrow[i], base1, 590 - cube1);
+					base1 = base1 + cube1;
+					i++;
+				} while (i <= secondrow.length - 1);
+				/* Variables changed */
+				i = 0; base2 = 75; base1 = cube1 / 2 + 12;
+				/* Variables changed */
+				do {
+					ctx.fillStyle = "black";
+					ctx.strokeStyle = "white";
+					if (i % 2 == 0) { ctx.strokeStyle = "black"; ctx.fillStyle = "white"; }
+					ctx.strokeText(firstrow[i], base1, 590 - 2 * cube1);
+					ctx.strokeText(secondrow[i], base1, base2);
+					base1 = base1 + cube1;
+					i++;
+				} while (i <= secondrow.length - 1);
+			}
+		};/* end of function */
+
+	</script>
+</head>
+
+<body style='background-color:white' onload="draw()" ;>
+
+	<div>
+		<canvas id='chessDesk' width='600' height='600'></canvas>
+	</div>
+
+	<br>
+	<br>
+	<div class="footer">
+		Copyright &copy; Alexander Kalabin
+	</div>
+</body>
+
+</html>
