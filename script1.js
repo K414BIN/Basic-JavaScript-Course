@@ -13,7 +13,7 @@ function openImage(event) {
     const image = document.createElement("img"); 
 
     image.id = 'image-'+seed;
-    image.src = 'imgs/'+seed+'.jpg';
+    image.src = seed+'.jpg';
     image.alt = 'Medicine '+seed;
     gallery.appendChild(image);
 }
