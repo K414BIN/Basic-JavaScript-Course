@@ -5,6 +5,9 @@ const ITEM_PREV='left';
   function init() {
        const buyButton = document.getElementById('add-to-cart');
        const forgetItButton = document.getElementById('del-from-cart');
+       const gallery = document.getElementById('itemImg');
+       const itemName = document.getElementById('itemName');
+       gallery.alt = itemName.value.toString();
        forgetItButton.addEventListener('click', () => cart.removeFromCart());
        buyButton.addEventListener('click', () => cart.addToCart());
        window.addEventListener('keydown',(event) => {warehouse.getNextItem(event) });
@@ -16,7 +19,7 @@ const ITEM_PREV='left';
                     },
                     amount: 5,
                     getNextItem(){
-                                        const position = this.amount;
+                                        var position = this.amount;
                        
                                         switch (event.keyCode){
                                         case 39:
