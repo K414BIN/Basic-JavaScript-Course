@@ -1,75 +1,36 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<title> Домашняя работа по второму уроку </title>
-</head>
-<script type="text/javascript">
-function check()
-{
-         let result=0;
-	 var inp = document.getElementsByName('r');
+<html lang ="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Интернет - аптека</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="header">
+        <div class="wrap"></div>
+            <h1 class="site-title">E-Apotheka</h1>
+    </div>
+    <section>
+    <div class="main">
+        <div class="wrap">
+            <div class="medicine-min-store" id="merchandise" data-order="">
+            <h3 id="itemName"> Test </h3>
+            <img id ="itemImg" src="img/1.jpg" alt=itemName />
+            <p id="itemPrice"> </p>
+            </div>
+            <button id="add-to-cart">Купить</button>
+            <button id="del-from-cart">Отменить</button>
+        </div>
+     </div>
+     </section>
+     <div class="footer">
+            <div class="wrap">
+            Copyright &copy; Alexander Kalabin        
+            </div>
 
-		 for ( let i=0; i<inp.length; i++){
-				if (inp[i].type=="radio" && inp[i].checked) {result=i;}
-						}
-return result;
-}
-function Run()
-{
-<!-- Я где-то тут неправильно вызываю js файл, но что неправильно я пока не знаю. :( --!>
-        let result=check();	
-        if (result=== 0) { document.write("<script type='text/javascript' src='section1.js'></script>");};
-        if (result=== 1) { document.write("<script type='text/javascript' src='section2.js'></script>");};
-        if (result=== 2) { document.write("<script type='text/javascript' src='section3.js'></script>");};
-        if (result=== 3) { document.write("<script type='text/javascript' src='section4.js'></script>");};
-        if (result=== 4) { document.write("<script type='text/javascript' src='section5.js'></script>");};
-        if (result=== 5) { document.write("<script type='text/javascript' src='section6.js'></script>");};
-        if (result=== 6) { document.write("<script type='text/javascript' src='section7.js'></script>");};
-        if (result=== 7) { document.write("<script type='text/javascript' src='section8.js'></script>");};
-<!-- Все работает и хорошо ;) --!>
-}
- 
-</script> 
-<body>
-<div> 
-     <label class="radio">
-			<input type="radio" name="r" id="one" checked><abbr title="Почему код даёт именно такие результаты?">3адание 1 </abbr>;
-     </label>
-     <label class="radio">
-			<input type="radio" name="r" id="two"><abbr title="Чему будет равен x в примере?">3адание 2 </abbr>;
-     </label>
-     <label class="radio">
-			<input type="radio" name="r" id="three"><abbr title=
-            "Объявить две целочисленные переменные a и b и задать им произвольные начальные значения. 
-            Затем написать скрипт, который работает по следующему принципу:
-				* если a и b положительные, вывести их разность;
-				* если а и b отрицательные, вывести их произведение;
-				* если а и b разных знаков, вывести их сумму;
-             Hоль можно считать положительным числом.">3адание 3 </abbr>;
-     </label>
-     <label class="radio">
-			<input type="radio" name="r" id="four"><abbr title="Присвоить переменной а значение в промежутке [0..15]. С помощью оператора switch организовать вывод чисел от a до 15.">3адание 4 </abbr>;
-     </label>
-     <label class="radio">
-			<input type="radio" name="r" id="five"><abbr title="Реализовать основные 4 арифметические операции в виде функций с двумя параметрами. Обязательно использовать оператор return.">3адание 5 </abbr>;
-     </label>
-     <label class="radio">
-			<input type="radio" name="r" id="six"><abbr title="Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation), где arg1,arg2 – значения аргументов, operation – строка с названием операции. В зависимости от переданного значения операции выполнить одну из арифметических операций (использовать функции из задачи 3) и вернуть полученное значение (использовать switch).">3адание 6 </abbr>;
-     </label>
-     <label class="radio">
-			<input type="radio" name="r" id="SEVEN"><abbr title="Сравнить null и 0. Попробуйте объяснить результат.">3адание 7 </abbr>;
-
-     </label>
-     <label class="radio">
-	    	<input type="radio" name="r" id="EIGHT"><abbr title="С помощью рекурсии организовать функцию возведения числа в степень. Формат: function power(val, pow), где val – заданное число, pow – степень.">3адание 8 </abbr>;
-     </label>
-</div>
-</div>
-<input type="button" value="Просмотр" id="btn" /> 
-<script type="text/javascript">
-var button = document.getElementById('btn')
-button.onclick = function(){ Run();};
-</script>
-</body>
+    </div>
+    
+  </body>
 </html>
