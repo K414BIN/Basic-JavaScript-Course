@@ -32,6 +32,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     font-family: Tahoma, Verdana, sans-serif;
+   
 }
 ol, ul {
 	list-style: none;
@@ -55,27 +56,43 @@ table {
     color: white;
     padding: 20px;
 }
-.wrap {
-    max-width: 1200px;
-    margin: 0 auto; 
-    
+
+.single-goods button{
+    display: flex;
+    margin: 2px auto;
+    flex-flow: row ;
 }
 .main {
     background: #f1f1f1;
 }
-.medicine-min-store {
+.medicine-in-store {
     width: 23%;
     background: coral;
     margin: 1%;
     text-align: center;
     padding: 10px;
 }
-.medicine-min-store img {
-    max-width: 100%;       
+
+.single-goods {
+    
+      
+    display: flex;
+    flex-flow: column ;
+    justify-content: flex-start;
+    border: 1px solid black;
+    margin: 0;
+    padding: 20px;
+
+}
+
+.image{
+  display: inline-block;
+  vertical-align: top;
 }
 .footer {
     background: black;
     min-height: 200px;
     color: yellow;
     padding: 20px;
+
 }
