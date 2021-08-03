@@ -1,0 +1,96 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    font-family: Tahoma, Verdana, sans-serif;
+   
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.cart {
+    width: 100%;
+    min-height: 80px;
+    background-color: cadetblue;
+    color: white;
+    padding: 20px;
+}
+
+.single-goods button{
+    display: flex;
+    margin: 2px auto;
+    flex-flow: row ;
+}
+
+.medicine-in-store {
+    width: 23%;
+    background: coral;
+    margin: 1%;
+    text-align: center;
+    padding: 10px;
+}
+
+.single-goods {
+    
+      
+    display: flex;
+    flex-flow: column ;
+    justify-content: flex-start;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0px;
+
+}
+
+.image{
+  display: inline-block;
+  vertical-align: top;
+}
+.footer {
+    background: black;
+    min-height: 200px;
+    color: yellow;
+    padding: 20px;
+
+}
