@@ -6,6 +6,7 @@ const SNAKE_DIRECTION_UP = 'up';
 const SNAKE_DIRECTION_DOWN = 'down';
 const SNAKE_DIRECTION_LEFT = 'left';
 const SNAKE_DIRECTION_RIGHT = 'right';
+var counter =1;
 
 /**
  * Объект с настройками конфигурации игры
@@ -21,6 +22,12 @@ const config = {
  * Основной объект игры.
  */
 const game = {
+   
+      score(counter)  { 
+                        
+                        let score = document.getElementById('score-value');
+                        score.innerText = counter;
+      },
 
     /**
      * Функция ищет HTML элемент контейнера игры на странице.
@@ -35,29 +42,56 @@ const game = {
      * Функция выполняет старт игры.
      */
     start() {
-        this.setGameStatus(GAME_STATUS_STARTED);
-
-        board.render();
-        snake.render();
-        food.render();
+              let element = game.getElement();
+              let isIt= element.classList.contains(GAME_STATUS_STARTED) || element.classList.contains(GAME_STATUS_PAUSED);
+              if (!isIt) { 
+                            let startGame = document.getElementById('board');
+                            startGame.classList.add('board');
+              board.render();
+	      } else {
+                        snake.parts.length=0;
+                        food.items.length=0;
+                        snake.parts= [
+                                        { top: 0, left: 0 },
+                                        { top: 0, left: 1 },
+                                        { top: 0, left: 2 },
+                                      ];
+                        food.items=[
+                                        { top: 5, left: 5 },
+                                        { top: 1, left: 2 },
+                                        { top: 8, left: 6 }
+                                   ];
+                        counter =1;   
+		}
+              this.setGameStatus(GAME_STATUS_STARTED);
+      	      snake.render();
+              food.render();
     },
 
     /**
      * Функция выполняет паузу игры.
      */
     pause() {
-        this.setGameStatus(GAME_STATUS_PAUSED);
-
-        /* добавить сюда код */
+	
+         let element = game.getElement();
+         let isIt= element.classList.contains(GAME_STATUS_PAUSED);
+         if (!isIt) {
+                     window.removeEventListener('keydown', game.move);
+	             this.setGameStatus(GAME_STATUS_PAUSED);
+           	} else {
+			window.addEventListener('keydown', game.move);
+			this.setGameStatus(GAME_STATUS_STARTED);
+	        }
+        
     },
 
     /**
      * Функция останавливает игру.
      */
     stop() {
-        this.setGameStatus(GAME_STATUS_STOPPED);
-
-        /* добавить сюда код */
+               this.setGameStatus(GAME_STATUS_STOPPED);
+               let stopGame = document.getElementById('board');
+               stopGame.classList.remove('board');                     
     },
 
     /**
@@ -90,11 +124,12 @@ const game = {
         /* устанавливаем позицию для змейки
          * и запрашиваем координаты следующей позиции */
         snake.setDirection(direction);
+        console.log("snake`s direction = " + direction);
         const nextPosition = snake.getNextPosition();
-
+	
         /* проверяем совпадает ли следующая позиция с какой-нибудь едой */
         const foundFood = food.foundPosition(nextPosition);
-
+	
         /* если найден индекс еды (то есть позиция совпадает) */
         if (foundFood !== -1) {
             /* устанавливаем следующую позицию змейки с вторым параметром "не удалять хвост змейки",
@@ -128,7 +163,9 @@ const game = {
         const element = game.getElement();
 
         // обратить внимание, как сделать красивее
-        element.classList.remove(GAME_STATUS_STARTED, GAME_STATUS_PAUSED, GAME_STATUS_STOPPED);
+        element.classList.remove(GAME_STATUS_PAUSED);
+        element.classList.remove(GAME_STATUS_STARTED);
+        element.classList.remove(GAME_STATUS_STOPPED);
         element.classList.add(status);
     }
 };
@@ -137,10 +174,6 @@ const game = {
  * Объект, представляющий поле, где ползает змейка.
  */
 const board = {
-
-    // cells: [
-    //     { top: 0, left: 0, className: '' }
-    // ],
 
     /**
      * Функция ищет HTML элемент поля на странице.
@@ -261,7 +294,7 @@ const snake = {
     getNextPosition() {
         /* получаем позицию головы змейки */
         const position = { ...this.parts[this.parts.length - 1] };
-
+	
         /* в зависимости от текущего положения
          * высчитываем значение от верхней и левой границы */
         switch(this.direction) {
@@ -278,7 +311,9 @@ const snake = {
                 position.left += 1;
                 break;
         }
-
+        /* Змейка врезается сама в себя, но я не могу получить переменную position ( ее значеник )
+        console.log( "Position = "+ position  );
+        if (this.parts.includes(position)) console.log("crash!");
         /* если змейка выходит за верхний или нижний край поля,
          * то изменяем координаты на противоположную сторону,
          * чтобы змейка выходя за границы возвращалась обратно на поле */
@@ -314,7 +349,6 @@ const snake = {
          * а значит увеличиваем змейку на одну клетку, это будет означать, что она съела еду */
         if (shift) {
             this.parts.shift();
-            
         }
 
         /* добавляем новые координаты в конец массива (голова змейки) */
@@ -366,7 +400,10 @@ const food = {
      * @param foundPosition Индекс найденного элемента.
      */
     removeItem(foundPosition) {
+        
         this.items.splice(foundPosition, 1);
+            
+        game.score(counter++);
     },
 
     /**
@@ -378,9 +415,13 @@ const food = {
             left: getRandomNumber(0, config.size - 1)
         };
 
-        // добавить проверку нет ли у нас такого элемента
+        // добавить проверку нет ли у нас такого элемента 
+        let exist = this.items.includes(newItem);
 
+	if  (!exist){
         this.items.push(newItem);
+	}
+
     },
 
     /**
